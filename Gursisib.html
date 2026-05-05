@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are My Parents Helicopter Parents? 🚁</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #e0f4ff;
+  --blue: #4a9eff;
+  --blue-dark: #1a6fd4;
+  --yellow: #ffd93d;
+  --yellow-dark: #e6b800;
+  --pink: #ff7eb3;
+  --pink-dark: #d45a8a;
+  --green: #6bcb77;
+  --green-dark: #3a9e46;
+  --orange: #ff9a3c;
+  --purple: #a78bfa;
+  --white: #ffffff;
+  --bg: #f0f8ff;
+  --text: #1e293b;
+  --muted: #5a7a9a;
+  --card: #ffffff;
+  --border: rgba(74,158,255,0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.65;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🚁%3C/text%3E%3C/svg%3E") 4 4, auto;
+}
+
+/* FLOATING CLOUDS */
+.clouds-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.cloud {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.12;
+  animation: drift linear infinite;
+}
+.cloud:nth-child(1) { top: 10%; animation-duration: 28s; animation-delay: 0s; }
+.cloud:nth-child(2) { top: 35%; animation-duration: 36s; animation-delay: -12s; font-size: 2rem; }
+.cloud:nth-child(3) { top: 60%; animation-duration: 24s; animation-delay: -6s; font-size: 4rem; }
+.cloud:nth-child(4) { top: 80%; animation-duration: 32s; animation-delay: -18s; font-size: 2.5rem; }
+
+@keyframes drift {
+  from { transform: translateX(-120px); }
+  to { transform: translateX(calc(100vw + 120px)); }
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 3px solid var(--yellow);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+  box-shadow: 0 4px 20px rgba(74,158,255,0.12);
+}
+
+.nav-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.25rem;
+  color: var(--blue-dark);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-logo .heli { display: inline-block; animation: spin-heli 2s linear infinite; transform-origin: center; }
+@keyframes spin-heli { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover { background: var(--sky); color: var(--blue-dark); }
+
+.ham { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+@media (max-width: 680px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 62px; left: 0; right: 0; background: var(--white); padding: 1rem; border-bottom: 3px solid var(--yellow); z-index: 99; gap: 4px; }
+  .nav-links.open { display: flex; }
+  .ham { display: block; }
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #cceeff 0%, #e8f8ff 50%, var(--bg) 100%);
+  overflow: hidden;
+}
+
+.hero-heli {
+  font-size: clamp(5rem, 15vw, 10rem);
+  display: block;
+  margin: 0 auto 1rem;
+  animation: heli-fly 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes heli-fly {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-18px) rotate(3deg); }
+}
+
+.hero h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  color: var(--blue-dark);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .wiggle {
+  display: inline-block;
+  color: var(--pink);
+  animation: wiggle 1.8s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%,100% { transform: rotate(-3deg) scale(1.02); }
+  50% { transform: rotate(3deg) scale(1.05); }
+}
+
+.hero-sub {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  font-weight: 600;
+}
+
+.btn-big {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--text);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 6px 0 var(--yellow-dark);
+  letter-spacing: 0.02em;
+}
+
+.btn-big:hover { transform: translateY(-3px); box-shadow: 0 9px 0 var(--yellow-dark); }
+.btn-big:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--yellow-dark); }
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--blue-dark);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 2.5px solid var(--blue);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-left: 10px;
+}
+.btn-ghost:hover { background: var(--blue); color: white; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: bounce-scroll 1.5s ease-in-out infinite;
+}
+@keyframes bounce-scroll { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+/* SECTIONS */
+section { position: relative; z-index: 1; padding: 5rem 1.5rem; }
+.container { max-width: 860px; margin: 0 auto; }
+
+.sec-label {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+
+.sec-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--blue-dark);
+  margin-bottom: 0.5rem;
+}
+
+.sec-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  max-width: 580px;
+}
+
+/* QUIZ */
+#quiz { background: white; }
+
+.quiz-wrap {
+  background: var(--sky);
+  border-radius: 28px;
+  padding: 2.5rem;
+  border: 3px solid var(--blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-wrap::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 4rem;
+  opacity: 0.15;
+}
+
+.q-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 2rem;
+}
+
+.q-pip {
+  height: 8px;
+  flex: 1;
+  border-radius: 4px;
+  background: rgba(74,158,255,0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+.q-pip.done { background: var(--green); }
+.q-pip.active { background: var(--yellow); transform: scaleY(1.3); }
+
+.q-counter {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--blue-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+
+.q-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.1rem, 3vw, 1.45rem);
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  line-height: 1.35;
+}
+
+.q-options { display: flex; flex-direction: column; gap: 10px; }
+
+.q-opt {
+  background: white;
+  border: 2.5px solid transparent;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s, background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.q-opt:hover { border-color: var(--blue); background: #f0f9ff; transform: translateX(4px); }
+.q-opt.selected { border-color: var(--blue); background: #dff0ff; }
+
+.opt-emoji { font-size: 1.3rem; flex-shrink: 0; }
+
+.q-nav { display: flex; justify-content: space-between; margin-top: 1.5rem; }
+
+.btn-next {
+  background: var(--blue);
+  color: white;
+  border: none;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05rem;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 4px 0 var(--blue-dark);
+}
+.btn-next:hover:not(:disabled) { background: var(--blue-dark); transform: translateY(-2px); }
+.btn-next:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
+.btn-back {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--muted);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 11px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-back:hover { border-color: var(--blue); color: var(--blue-dark); }
+
+/* RESULT */
+.q-result { text-align: center; padding: 1rem 0; }
+
+.result-big { font-size: 6rem; margin-bottom: 0.5rem; display: block; animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes pop-in { from{transform:scale(0)} to{transform:scale(1)} }
+
+.result-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.9rem;
+  color: var(--blue-dark);
+  margin-bottom: 0.5rem;
+}
+
+.result-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 6px 20px;
+  border-radius: 30px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge-low { background: #d5f5e3; color: #1e8449; }
+.badge-mid { background: #fff3cd; color: #856404; }
+.badge-high { background: #ffe0e0; color: #c0392b; }
+
+.result-text {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* WHAT IS */
+#what { background: var(--bg); }
+
+.what-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.what-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  border: 2px solid transparent;
+  transition: border-color 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.what-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+.what-card .card-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+.what-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--blue-dark); }
+.what-card p { font-size: 0.92rem; color: var(--muted); font-weight: 600; line-height: 1.55; }
+
+/* SIGNS */
+#signs { background: #fff9f0; }
+
+.signs-intro {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  border-left: 6px solid var(--orange);
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.signs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.sign-card {
+  background: white;
+  border-radius: 18px;
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.sign-card:hover { border-color: var(--orange); }
+
+.sign-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--orange);
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.sign-card p { font-size: 0.92rem; color: var(--text); font-weight: 600; line-height: 1.5; }
+.sign-card .sign-emoji { font-size: 1.1rem; }
+
+/* FEELINGS */
+#feelings { background: white; }
+
+.feel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.feel-card {
+  border-radius: 20px;
+  padding: 1.5rem;
+  font-weight: 600;
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.feel-card h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  color: #3d4a5a;
+  border-bottom: 1px dashed rgba(0,0,0,0.07);
+}
+.feel-item:last-child { border-bottom: none; }
+
+.fc-blue { background: #e8f4ff; }
+.fc-pink { background: #ffe8f4; }
+.fc-green { background: #e8faf0; }
+.fc-yellow { background: #fff8e0; }
+
+/* TALK */
+#talk { background: linear-gradient(135deg, #e8f4ff 0%, #f0e8ff 100%); }
+
+.talk-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.talk-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: white;
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.step-num-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.talk-step h4 { font-family: 'Fredoka One', cursive; font-size: 1rem; margin-bottom: 0.35rem; color: var(--blue-dark); }
+.talk-step p { font-size: 0.92rem; color: var(--muted); font-weight: 600; line-height: 1.5; }
+
+.talk-quote {
+  background: white;
+  border-radius: 16px;
+  border-left: 5px solid var(--purple);
+  padding: 1rem 1.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.93rem;
+  color: var(--text);
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* CONTACT */
+#contact { background: var(--bg); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media(max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+
+.contact-side p { color: var(--muted); font-weight: 600; font-size: 0.97rem; margin-bottom: 1.25rem; }
+.contact-bubble {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  border: 2px solid var(--border);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-card {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 6px 24px rgba(74,158,255,0.1);
+  border: 2px solid var(--border);
+}
+
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 800; margin-bottom: 4px; color: var(--text); }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); background: white; }
+
+.form-success {
+  background: #d5f5e3;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #1e8449;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  display: none;
+  text-align: center;
+}
+
+/* IMPRINT */
+#imprint {
+  background: var(--blue-dark);
+  color: white;
+  padding: 3rem 1.5rem;
+}
+
+.imprint-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.imp-col h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  color: var(--yellow);
+  margin-bottom: 0.75rem;
+}
+
+.imp-col p, .imp-col a {
+  font-size: 0.87rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.9;
+  display: block;
+}
+.imp-col a:hover { color: white; }
+
+footer {
+  background: #0f2d5a;
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="clouds-bg">
+  <div class="cloud">☁️</div>
+  <div class="cloud">☁️</div>
+  <div class="cloud">☁️</div>
+  <div class="cloud">☁️</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo"><span class="heli">🚁</span> Are My Parents Helicopters?</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#what">What is it?</a></li>
+    <li><a href="#signs">Signs</a></li>
+    <li><a href="#feelings">How it feels</a></li>
+    <li><a href="#talk">Talk to them</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="ham" id="ham">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div>
+    <span class="hero-heli"></span>
+    <h1>Do your parents<br>follow you <span class="wiggle">everywhere?</span></h1>
+    <p class="hero-sub">Find out if your parents are "helicopter parents" — and what that actually means for you!</p>
+    <a href="#quiz" class="btn-big">Take the Quiz! </a>
+    <a href="#what" class="btn-ghost">What's that?</a>
+    <div class="hero-scroll"</div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="container">
+    <span class="sec-label">✨ Quick Quiz</span>
+    <h2 class="sec-title">Are YOUR parents helicopter parents?</h2>
+    <p class="sec-desc">Answer these questions about how your parents act — be honest, there are no wrong answers!</p>
+
+    <div class="quiz-wrap">
+      <div class="q-progress" id="qProg"></div>
+
+      <div id="quizView">
+        <p class="q-counter" id="qCount">Question 1 of 9</p>
+        <p class="q-text" id="qText"></p>
+        <div class="q-options" id="qOpts"></div>
+        <div class="q-nav">
+          <button class="btn-back" id="backBtn" onclick="prevQ()">← Back</button>
+          <button class="btn-next" id="nextBtn" onclick="nextQ()" disabled>Next →</button>
+        </div>
+      </div>
+
+      <div id="resultView" style="display:none">
+        <div class="q-result">
+          <span class="result-big" id="resEmoji"></span>
+          <h3 class="result-title" id="resTitle"></h3>
+          <div class="result-badge" id="resBadge"></div>
+          <p class="result-text" id="resDesc"></p>
+          <button class="btn-big" onclick="resetQ()" style="margin-right:10px;">Try Again 🔄</button>
+          <a href="#talk" class="btn-ghost" style="margin-top:0.5rem;display:inline-block;">What now? →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS IT -->
+<section id="what">
+  <div class="container">
+    <span class="sec-label"> Explainer</span>
+    <h2 class="sec-title">What is a "helicopter parent"?</h2>
+    <p class="sec-desc">The name comes from a helicopter that hovers (flies in one place) over something. A helicopter parent always "hovers" over their child — watching everything, worrying about everything, doing everything for them.</p>
+
+    <div class="what-cards">
+      <div class="what-card">
+        <span class="card-icon"></span>
+        <h3>Overprotective</h3>
+        <p>They try to protect you from every little bad thing — even things that aren't really dangerous.</p>
+      </div>
+      <div class="what-card">
+        <span class="card-icon"></span>
+        <h3>Always watching</h3>
+        <p>They want to know where you are, what you're doing, and who you're with — all the time.</p>
+      </div>
+      <div class="what-card">
+        <span class="card-icon"></span>
+        <h3>Doing things for you</h3>
+        <p>They jump in to fix problems or do tasks that you could handle yourself.</p>
+      </div>
+      <div class="what-card">
+        <span class="card-icon"></span>
+        <h3>It comes from love</h3>
+        <p>They usually do it because they love you SO much — they just worry too much sometimes!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNS -->
+<section id="signs">
+  <div class="container">
+    <span class="sec-label"> Warning Signs</span>
+    <h2 class="sec-title">Signs your parents might be helicopter parents</h2>
+    <p class="sec-desc">Read through these and see if any sound familiar!</p>
+
+    <div class="signs-intro">
+       Having 1–2 of these is totally normal. If you're nodding at most of them, your parents might have helicopter tendencies!
+    </div>
+
+    <div class="signs-grid">
+      <div class="sign-card">
+        <span class="sign-num">1</span>
+        <p><span class="sign-emoji"></span> They text or call you constantly when you're out — and get worried if you don't reply immediately.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">2</span>
+        <p><span class="sign-emoji"></span> They pack your school bag, do parts of your homework, or check all your schoolwork.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">3</span>
+        <p><span class="sign-emoji"></span> When you have a fight with a friend, they want to call that friend's parents straight away.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">4</span>
+        <p><span class="sign-emoji"></span> They track your phone location and know where you are at every moment.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">5</span>
+        <p><span class="sign-emoji"></span> They still pick out your clothes, food, or activities — even though you're old enough to decide.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">6</span>
+        <p><span class="sign-emoji"></span> They get very upset or anxious when you want to do something independently (like going to a friend's house alone).</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">7</span>
+        <p><span class="sign-emoji"></span> They plan every single hour of your free time — you almost never get to just be bored.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">8</span>
+        <p><span class="sign-emoji"></span> If you get a bad grade, they get more upset about it than you do.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">9</span>
+        <p><span class="sign-emoji"></span> If you forget your lunch or sports kit, they bring it to school for you straight away.</p>
+      </div>
+      <div class="sign-card">
+        <span class="sign-num">10</span>
+        <p><span class="sign-emoji"></span> They speak for you in situations where you could speak for yourself — like talking to a teacher or ordering food.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-side">
+        <span class="sec-label"> Say Hi</span>
+        <h2 class="sec-title" style="font-size:1.7rem;">Get in touch!</h2>
+        <p>Got a question? Want to share your story? Or maybe you have a suggestion for this site? We'd love to hear from you!</p>
+        <div class="contact-bubble">hello@aremyparentshelicopters.com</div>
+        <div class="contact-bubble">⏱We reply within a few days</div>
+        <div class="contact-bubble"> Your message stays private</div>
+      </div>
+ 
+      <div class="form-card">
+        <form id="cForm" onsubmit="doSubmit(event)">
+          <div class="form-group">
+            <label>Your first name (or a nickname!) </label>
+            <input type="text" placeholder="e.g. Alex" required>
+          </div>
+          <div class="form-group">
+            <label>Your age</label>
+            <select>
+              <option value="">— choose —</option>
+              <option>8 or younger</option>
+              <option>9–10</option>
+              <option>11–12</option>
+              <option>13–14</option>
+              <option>15+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>What do you want to talk about?</label>
+            <select>
+              <option value="">— choose —</option>
+              <option>I have a question about helicopter parents</option>
+              <option>I want to share my story</option>
+              <option>I need some advice</option>
+              <option>I found a mistake on the site</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your message</label>
+            <textarea rows="4" placeholder="Tell us what's going on... " required></textarea>
+          </div>
+          <button type="submit" class="btn-big" style="width:100%;font-size:1rem;padding:14px;">Send it! </button>
+          <div class="form-success" id="fSuccess"> Message sent! We'll get back to you soon!</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- HOW IT FEELS -->
+<section id="feelings">
+  <div class="container">
+    <span class="sec-label"> Your Experience</span>
+    <h2 class="sec-title">How does it feel to have helicopter parents?</h2>
+    <p class="sec-desc">You're not alone. Lots of kids have these mixed feelings — and all of them make sense.</p>
+
+    <div class="feel-grid">
+      <div class="feel-card fc-pink">
+        <h3> Frustrating things</h3>
+        <div class="feel-item"> Feeling like they don't trust you</div>
+        <div class="feel-item"> No privacy — they want to know everything</div>
+        <div class="feel-item"> Never getting to figure things out yourself</div>
+        <div class="feel-item"> Feeling nervous about doing anything alone</div>
+      </div>
+      <div class="feel-card fc-blue">
+        <h3> Confusing feelings</h3>
+        <div class="feel-item"> Knowing they do it because they love you</div>
+        <div class="feel-item"> Not sure if you should feel grateful or annoyed</div>
+        <div class="feel-item"> Feeling embarrassed in front of friends</div>
+        <div class="feel-item"> Sometimes wishing they'd back off</div>
+      </div>
+      <div class="feel-card fc-yellow">
+        <h3> Tricky effects</h3>
+        <div class="feel-item"> Feeling less confident in yourself</div>
+        <div class="feel-item"> Not practising how to solve your own problems</div>
+        <div class="feel-item"> Struggling more when parents aren't around</div>
+        <div class="feel-item"> Feeling more anxious, not less</div>
+      </div>
+      <div class="feel-card fc-green">
+        <h3> What's actually okay</h3>
+        <div class="feel-item"> Feeling all of the above is totally normal</div>
+        <div class="feel-item"> It's okay to wish things were different</div>
+        <div class="feel-item"> You can learn independence little by little</div>
+        <div class="feel-item"> Talking about it can really help</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="imprint" style="padding:3rem 1.5rem;">
+  <div class="imprint-grid">
+    <div class="imp-col">
+      <h4>Imprint</h4>
+      <p>aremyparentshelicopters.com</p>
+      <p>An educational info site for kids</p>
+      <p>ishantheoghotra@gmail.com</p>
+      <p>Ishan, Gursi, Oskar</p>
+      <p>Holbeinstr. 21</p>
+      <p>Germany</p>
+      <p>+49 1749581405</p>
+    </div>
+  
+</section>
+<!-- HOW TO TALK TO THEM -->
+
+
+<script>
+const Qs = [
+  {
+    q: "When you go out with friends, how often do your parents call or text to check on you?",
+    opts: [
+      {e:"", t:"Rarely — they trust me to be fine"},
+      {e:"", t:"Sometimes, if it's been a while"},
+      {e:"", t:"A lot — they check in every 30 minutes or so"},
+      {e:"", t:"Constantly — I have to reply immediately or they panic"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "If you get a bad grade at school, what usually happens?",
+    opts: [
+      {e:"", t:"We talk about it calmly — it's not a huge deal"},
+      {e:"", t:"They're disappointed but let me figure out how to fix it"},
+      {e:"", t:"They get really upset and want to contact my teacher"},
+      {e:"", t:"They call the teacher themselves and fight my corner for me"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "When you have a fight or problem with a friend, your parents...",
+    opts: [
+      {e:"", t:"Listen and let me handle it"},
+      {e:"", t:"Give me advice but leave it up to me"},
+      {e:"", t:"Want to know every detail and tell me exactly what to do"},
+      {e:"", t:"Want to call that friend's parents or step in themselves"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "Can you do things independently — like going to a friend's house or the shops?",
+    opts: [
+      {e:"", t:"Yes, totally — no problem"},
+      {e:"", t:"Yes, but they need to know where I am"},
+      {e:"", t:"Only sometimes — they get really nervous about it"},
+      {e:"", t:"Barely ever — they always want to come with me or say no"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "Who usually packs your school bag or checks your homework?",
+    opts: [
+      {e:"", t:"Me — I handle it myself"},
+      {e:"", t:"Me, but they sometimes check afterwards"},
+      {e:"", t:"We do it together most of the time"},
+      {e:"", t:"They do it for me — I'm not really allowed to mess up"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "What happens if you forget something at home (like your gym kit or lunch)?",
+    opts: [
+      {e:"", t:"I deal with it — I've learned my lesson!"},
+      {e:"", t:"They remind me gently but let it go"},
+      {e:"", t:"They bring it to school for me straight away"},
+      {e:"", t:"They get really stressed and drop everything to fix it"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "How much free time do you have where YOU decide what to do?",
+    opts: [
+      {e:"", t:"Lots — I have loads of unplanned free time"},
+      {e:"", t:"Some — there's a mix of activities and free time"},
+      {e:"", t:"Not much — most days are planned by my parents"},
+      {e:"", t:"Almost none — every hour seems to be organised for me"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "Do your parents track your phone's location?",
+    opts: [
+      {e:"", t:"No — they respect my privacy"},
+      {e:"", t:"Only when we've agreed, like on big trips"},
+      {e:"", t:"Yes, they can check whenever they want"},
+      {e:"", t:"Yes and they check it all the time"}
+    ],
+    pts: [0,1,2,3]
+  },
+  {
+    q: "When you're talking to a teacher, shop assistant, or another adult, your parents...",
+    opts: [
+      {e:"", t:"Step back and let me speak for myself"},
+      {e:"", t:"Help if I'm stuck, but usually let me talk"},
+      {e:"", t:"Often jump in before I've had a chance"},
+      {e:"", t:"Almost always speak for me — it feels awkward"}
+    ],
+    pts: [0,1,2,3]
+  }
+];
+
+let cur = 0, ans = new Array(Qs.length).fill(null);
+
+function buildProg() {
+  const el = document.getElementById('qProg');
+  el.innerHTML = '';
+  Qs.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'q-pip' + (i < cur ? ' done' : i === cur ? ' active' : '');
+    el.appendChild(d);
+  });
+}
+
+function renderQ() {
+  const q = Qs[cur];
+  document.getElementById('qCount').textContent = `Question ${cur+1} of ${Qs.length}`;
+  document.getElementById('qText').textContent = q.q;
+  const el = document.getElementById('qOpts');
+  el.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-opt' + (ans[cur] === i ? ' selected' : '');
+    btn.innerHTML = `<span class="opt-emoji">${o.e}</span>${o.t}`;
+    btn.onclick = () => pick(i);
+    el.appendChild(btn);
+  });
+  document.getElementById('nextBtn').disabled = ans[cur] === null;
+  document.getElementById('backBtn').style.visibility = cur === 0 ? 'hidden' : 'visible';
+  buildProg();
+}
+
+function pick(i) {
+  ans[cur] = i;
+  document.querySelectorAll('.q-opt').forEach((b,j) => b.classList.toggle('selected', j===i));
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQ() {
+  if (ans[cur] === null) return;
+  if (cur < Qs.length-1) { cur++; renderQ(); }
+  else showRes();
+}
+
+function prevQ() { if(cur>0){cur--;renderQ();} }
+
+function showRes() {
+  const total = ans.reduce((s,a,i) => s + (a!==null?Qs[i].pts[a]:0), 0);
+  const max = Qs.length * 3;
+  const pct = total / max;
+
+  document.getElementById('quizView').style.display = 'none';
+  document.getElementById('resultView').style.display = 'block';
+
+  let emoji, title, badge, bclass, desc;
+  if (pct <= 0.3) {
+    emoji='🌈'; title='Sounds pretty balanced!'; badge='No big signs'; bclass='badge-low';
+    desc = "Based on your answers, your parents seem to give you a good amount of freedom and independence. Every parent worries sometimes — that's totally normal. It sounds like things are pretty healthy at home!";
+  } else if (pct <= 0.65) {
+    emoji='🤔'; title='Some helicopter tendencies!'; badge='A few signs'; bclass='badge-mid';
+    desc = "Your parents might hover a little more than needed in some areas. This is actually really common! It probably comes from love and worry. Maybe pick one small thing to talk to them about — you might be surprised how well they listen.";
+  } else {
+    emoji='🚁'; title='Sounds like helicopter parents!'; badge='Strong signs'; bclass='badge-high';
+    desc = "Your answers suggest your parents are pretty protective — maybe a lot! This can feel frustrating, but remember it usually comes from love (even if it doesn't feel that way). Scroll down to find out how to talk to them about it in a kind way. And if things feel really difficult, it's okay to ask a trusted adult at school for help.";
+  }
+
+  document.getElementById('resEmoji').textContent = emoji;
+  document.getElementById('resTitle').textContent = title;
+  document.getElementById('resBadge').textContent = badge;
+  document.getElementById('resBadge').className = 'result-badge ' + bclass;
+  document.getElementById('resDesc').textContent = desc;
+
+  document.querySelectorAll('.q-pip').forEach(p => { p.className = 'q-pip done'; });
+}
+
+function resetQ() {
+  cur=0; ans=new Array(Qs.length).fill(null);
+  document.getElementById('quizView').style.display='block';
+  document.getElementById('resultView').style.display='none';
+  renderQ();
+}
+
+function doSubmit(e) {
+  e.preventDefault();
+  document.getElementById('fSuccess').style.display='block';
+  e.target.reset();
+}
+
+document.getElementById('ham').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+renderQ();
+</script>
+</body>
+</html>
